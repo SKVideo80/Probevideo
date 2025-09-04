@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Interaktives Video</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #111;
+      margin: 0;
+    }
+
+    .container {
+      position: relative;
+      width: 80%;
+      max-width: 800px;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 12px;
+    }
+
+    .speed-button {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 3px solid #8e3a59; /* Beere */
+      background: transparent;    /* durchsichtig */
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .speed-button:active {
+      background: rgba(142, 58, 89, 0.2); /* leichter Schimmer beim Drücken */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <video id="myVideo" controls>
+      <source src="Probevideo.mp4" type="video/mp4">
+      Dein Browser unterstützt kein Video.
+    </video>
+    <div id="speedBtn" class="speed-button"></div>
+  </div>
+
+  <script>
+    const video = document.getElementById('myVideo');
+    const speedBtn = document.getElementById('speedBtn');
+
+    // Beim Drücken -> doppelte Geschwindigkeit
+    speedBtn.addEventListener('mousedown', () => {
+      video.playbackRate = 2.0;
+    });
+    speedBtn.addEventListener('touchstart', () => {
+      video.playbackRate = 2.0;
+    });
+
+    // Beim Loslassen -> normale Geschwindigkeit
+    speedBtn.addEventListener('mouseup', () => {
+      video.playbackRate = 1.0;
+    });
+    speedBtn.addEventListener('mouseleave', () => {
+      video.playbackRate = 1.0;
+    });
+    speedBtn.addEventListener('touchend', () => {
+      video.playbackRate = 1.0;
+    });
+  </script>
+</body>
+</html>
